@@ -21,12 +21,12 @@ public class Binary_Search {
         int start=0;
         int end=arr.length-1;
        while (start<=end){
-           int mid=start+(start+end)/2;
+           int mid=start+(end-start)/2;
            if(target<arr[mid]){
-               mid=end-1;
+               end=mid-1;
            }else if(target>arr[mid]){
-               mid=start+1;
-           }else{
+               start=mid+1;
+           }else if(target==arr[mid]){
                return mid;
            }
        }

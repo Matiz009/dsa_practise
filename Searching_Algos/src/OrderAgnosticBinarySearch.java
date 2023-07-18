@@ -6,10 +6,10 @@ public class OrderAgnosticBinarySearch {
         int [] arrAss = {2,4,6,8,14};
         int [] arrDes = {15,12,7,3,1};
         Scanner scanner= new Scanner(System.in);
-        System.out.println(Arrays.toString(arrDes));
+        System.out.println(Arrays.toString(arrAss));
         System.out.print("Enter the number:\t");
         int num=scanner.nextInt();
-        int result=orderAgnosticBs(arrDes,num);
+        int result=orderAgnosticBs(arrAss,num);
         if(result==-1){
             System.out.println("Number not found");
         }else{
