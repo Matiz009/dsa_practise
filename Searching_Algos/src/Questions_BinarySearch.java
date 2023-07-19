@@ -6,12 +6,17 @@ public class Questions_BinarySearch {
         Scanner scanner=new Scanner(System.in);
         int [] arr = {5,7,7,8,8,10};
         int [] peakArr ={1,2,3,4,5,6,3,2,1};
+        int [] rotated={5, 6, 7, 8, 9, 10, 1, 2, 3};
+        int rotation=countINRotated(rotated);
+        System.out.println(rotation);
+        int result=search(rotated,9);
+        System.out.println(rotated[result]+" is found at index: "+result);
         int sol=peakIndexInMountainArray(peakArr);
         System.out.println(peakArr[sol]);
-        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(peakArr));
         System.out.print("Enter the number:\t");
         int num= scanner.nextInt();
-        int n=findInInfiniteArray(arr,num);
+        int n=findInPeak(peakArr,num);
         if(n!=-1){
             System.out.println(num+" is fount at index: "+n);
         }
@@ -137,5 +142,74 @@ public class Questions_BinarySearch {
             }
         }
         return end;
+    }
+    static int findInPeak(int [] arr, int target){
+        int mid=peakIndexInMountainArray(arr);
+        int firstTry=orderAgnosticBs(arr,target,0,mid);
+        if (firstTry != -1){
+            return firstTry;
+        }else{
+            return orderAgnosticBs(arr,target,mid+1,arr.length-1);
+        }
+    }
+    static int orderAgnosticBs(int [] arr , int num,int start,int end){
+        boolean isAscending=arr[start]<arr[end];
+        while (start<=end){
+            int mid=start+(end-start)/2;
+            if(num==arr[mid]){
+                return mid;
+            }
+            if (isAscending){
+                if(num<arr[mid]){
+                    end=mid-1;
+                } else if(num > arr[mid]) {
+                    start=mid+1;
+                }
+            }else{
+                if(num<arr[mid]){//12,7,4,2,1
+                    start=mid+1;
+                } else if(num > arr[mid]) {
+                    end=mid-1;
+                }
+            }
+        }
+        return -1;
+    }
+    static int findPivot(int [] arr){
+        int start=0;
+         int end=arr.length-1;
+         while (start<=end){
+             int mid=start+(end-start)/2;
+             if(mid<end && arr[mid]>arr[mid+1]){
+                 return mid;
+             }
+             if(mid>start && arr[mid]<arr[mid-1]){
+                 return mid-1;
+             }if(arr[mid]<=arr[start]){
+                 end=mid-1;
+
+             }else{
+                 start=mid+1;
+             }
+         }
+         return -1;
+    }
+    static int search(int [] arr, int target){
+        int pivot=findPivot(arr);
+        if(pivot==-1){
+            return binarySearch(arr,target,0,arr.length-1);
+        }
+        if(arr[pivot]==target){
+            return pivot;
+
+        }
+        if(target>=arr[0]){
+            return binarySearch(arr,target,0,pivot-1);
+        }
+        return binarySearch(arr,target,pivot+1,arr.length-1);
+    }
+    static int countINRotated(int [] arr){
+        int pivot=findPivot(arr);
+        return pivot+1;
     }
 }
