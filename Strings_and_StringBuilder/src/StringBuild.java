@@ -13,5 +13,22 @@ public class StringBuild{
         String name = "Mati ul Rehman";
         System.out.println(Arrays.toString(name.toCharArray()));
         System.out.println(name.toLowerCase());
+        palindrome("aaa");
+
+
+    }
+    static void palindrome(String str){
+        String sample=str.toLowerCase();
+        for (int i = 0; i < sample.length()/2; i++) {
+            char start=sample.charAt(i);
+            char end=sample.charAt(sample.length()-1-i);
+            if(start != end){
+                System.out.println(str+" is not a palindrome.");
+                break;
+            }else{
+                System.out.println(str+" is a palindrome.");
+            }
+        }
+
     }
 }
