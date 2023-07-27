@@ -49,7 +49,7 @@ public class Main {
             int totalColsInRow = row > n ? 2 * n - row : row;
             int spaces = n-totalColsInRow;
             for (int s = 0; s < spaces; s++) {
-                System.out.println(" ");
+                 System.out.println(" ");
             }
             for (int col = 0; col < totalColsInRow; col++) {
                 System.out.print("* ");
