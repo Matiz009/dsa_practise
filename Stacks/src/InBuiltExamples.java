@@ -1,6 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class InBuiltExamples {
     public static void main(String[] args) {
@@ -16,6 +14,13 @@ public class InBuiltExamples {
         }
 
         System.out.println(queue.peek());
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.add(34);
+        deque.add(45);
+        deque.add(56);
+        System.out.println(deque);
+        System.out.println(deque.peek());
+
 
     }
 }
