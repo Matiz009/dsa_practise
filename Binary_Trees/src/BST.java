@@ -16,6 +16,32 @@ public class BST {
     public void display(){
         display(root,"Root Node: ");
     }
+    private Node insert(int value,Node node){
+        if(node==null){
+            node = new Node(value);
+            return node;
+        }
+        if(value< node.value){
+         node.left=insert(value,node.left);
+        }
+        if(value> node.value){
+            node.right=insert(value,node.right);
+        }
+        node.height=Math.max(height(node.left),height(node.right)+1);
+        return node;
+    }
+    public void insert(int value){
+
+    }
+    public boolean balanced(){
+        return balanced(root);
+    }
+    private boolean balanced(Node node){
+        if(node==null){
+            return true;
+        }
+        return Math.abs(height(node.left)-height(node.right))<= 1 && balanced(node.right)&& balanced(node.right);
+    }
 
     private void display(Node node,String details){
         if(node==null){
